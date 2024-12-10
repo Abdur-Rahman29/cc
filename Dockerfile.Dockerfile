@@ -1,27 +1,27 @@
-# Use a Red Hat-based base image
-FROM centos:7
+# Use Rocky Linux 8 as the base image
+FROM rockylinux:8
 
-# Update packages and install Java and Python
+# Set environment variables
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+
+# Update the system and install required packages
 RUN yum update -y && \
     yum install -y java-11-openjdk-devel python3 python3-pip && \
     yum clean all
 
-# Set JAVA_HOME for the environment
-ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
-ENV PATH=$JAVA_HOME/bin:$PATH
-
-# Install Python dependencies
-COPY requirements.txt /app/requirements.txt
-RUN pip3 install --no-cache-dir -r /app/requirements.txt
-
-# Copy application code to the container
-COPY . /app
-
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Expose the desired port (replace 8080 if necessary)
-EXPOSE 9090
+# Copy the application files into the container
+COPY . /app
 
-# Command to run your Python application
+# Install Python dependencies (ensure requirements.txt exists in your app directory)
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Expose a port (change 5000 to your application's port if needed)
+EXPOSE 5000
+
+# Define the default command to run your app
 CMD ["python3", "app.py"]
