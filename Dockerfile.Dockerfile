@@ -17,11 +17,8 @@ WORKDIR /app
 # Copy the application files into the container
 COPY . /app
 
-# Install Python dependencies (ensure requirements.txt exists in your app directory)
-RUN pip3 install --no-cache-dir -r requirements.txt
-
 # Expose a port (change 5000 to your application's port if needed)
-EXPOSE 5000
+EXPOSE 9090
 
 # Define the default command to run your app
 CMD ["python3", "app.py"]
