@@ -17,7 +17,7 @@ WORKDIR /app
 
 # Copy the application files into the container
 COPY . /app
-
+RUN chmod -R 777 /app
 # Give executable permission to gradlew
 RUN chmod +x gradlew
 
