@@ -5,6 +5,7 @@ FROM rockylinux:8
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+ENV GRADLE_USER_HOME=/app/.gradle  # Set Gradle home to a writable directory
 
 # Update the system and install required packages
 RUN yum update -y && \
