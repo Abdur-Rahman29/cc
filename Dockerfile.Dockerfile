@@ -17,7 +17,10 @@ WORKDIR /app
 # Copy the application files into the container
 COPY . /app
 
-# Expose a port (change 5000 to your application's port if needed)
+# Give executable permission to gradlew
+RUN chmod +x gradlew
+
+# Expose a port (change 9090 to your application's port if needed)
 EXPOSE 9090
 
 # Define the default command to run your app
